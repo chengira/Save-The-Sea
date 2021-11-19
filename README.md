@@ -15,7 +15,7 @@
 ***
 
 ## Project Description *(Software Lead)*
-<< This is a game that emulates a space invader game with asteroids. Player play as a space ship that they can pilot using keyboard inputs. They will evade asteroids while using their ship to destroy any in their way. The goal is to score as many points as possible without losing all three lives. The game will get progressly harder with more asteroids and meteorites entering the screen. >>
+<< This is a project that emulates a space invader game with asteroids, but with a twist, it's based on Earth's oceans with sea monsters. The player plays as a ship that they can control using keyboard inputs. They will evade sea monsters while using their ship to destroy any in their way. The goal is to score as many points as possible without losing all three lives. The game will get progressly harder with more sea monsters entering the screen. >>
 
 ***    
 
@@ -39,7 +39,7 @@
         * ![class diagram](assets/class_diagram.jpg)
     * This does not need to be overly detailed, but should show how your code fits into the Model/View/Controller paradigm.
 * Classes
-    * << You should have a list of each of your classes with a description. >>
+    * << You should have a list of each of your classes with a description. Weapon, Ship, Monster >>
 
 ## Project Structure *(Software Lead)*
 

@@ -1,5 +1,6 @@
 import pygame
 from src import ship
+from src import monster 
 class Controller:
 	def __init__(self,width = 500,height=600):
 		pygame.init()
@@ -14,6 +15,9 @@ class Controller:
 		self.all_sprite = pygame.sprite.Group()
 		self.ship = ship.Ship()
 		self.all_sprite.add(self.ship)
+		for i in range(5):
+			self.monster = monster.Monster()
+			self.all_sprite.add(self.monster)
 	def mainLoop(self):
 		pygame.init()
 		while self.running:
@@ -23,5 +27,13 @@ class Controller:
 					self.running = False 
 			self.screen.fill(self.white)
 			self.all_sprite.draw(self.screen)
+			
+
+
+			#screen update
 			pygame.display.update()
+			self.all_sprite.update()
+
+
+
 		pygame.quit()		

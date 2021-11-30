@@ -6,5 +6,23 @@ class Ship(pygame.sprite.Sprite):
 		self.image = pygame.Surface((50,40))
 		self.image.fill((0,255,0))
 		self.rect = self.image.get_rect()
-		self.rect.x = 200
-		self.rect.y = 200
+		self.rect.centerx = 250
+		self.rect.bottom = 590
+		self.speedx = 8
+	
+
+
+	def update(self):
+		key_pressed = pygame.key.get_pressed()
+		if key_pressed[pygame.K_RIGHT]:
+			self.rect.x += 2
+		if key_pressed[pygame.K_LEFT]:
+			self.rect.x -= 2
+		
+
+
+
+		if self.rect.right > 500:
+			self.rect.right = 500
+		if self.rect.left < 0:
+			self.rect.left = 0 

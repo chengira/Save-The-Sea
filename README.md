@@ -77,12 +77,9 @@ The Project is broken down into the following file structure:
 
 | Step                  | Procedure     | Expected Results  | Actual Results |
 | ----------------------|:-------------:| -----------------:| -------------- |
-|  1  | Open the terminal of the machine, navigate to folder, and type into terminal “python3 main.py”. | 1) The program starts and the player is presented | | with the main menu screen. 2) Player is greeted with a soundtrack. |          |
-
-|  2  | Click “Exit Game” button | 1) All aspects of the program ceases to operate and the player returns to step 1. |                 |
-|  3  | Click “Start Game” button | 1) The program progresses from the main menu screen to the gameplay screen. |
-| 2) Music switches to a more dramatic beat |
-| 3) Monsters instantly spawn from the top of the screen |          |
+|  1  | Open the terminal of the machine, navigate to folder, and type into terminal “python3 main.py”. | 1) The program starts and the player is presented with the main menu screen. 2) Player is greeted with a soundtrack. |         |
+|  2  | Click “Exit Game” button | 1) All aspects of the program ceases to operate and the player returns to step 1. |          |
+|  3  | Click “Start Game” button | 1) The program progresses from the main menu screen to the gameplay screen. 2) Music switches to a more dramatic beat 3) Monsters instantly spawn from the top of the screen |          |
 |  4  | Press LEFT ARROW, hold LEFT ARROW | 1) The ship which the player is now controlling will shift one time to the left side of the screen if the left arrow is pressed.
 2) The ship which the player is now controlling will move continuously to the left side of the screen if the left arrow is held.
 3) If the ship reaches a point left enough it will no longer move left. |         |

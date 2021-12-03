@@ -1,4 +1,5 @@
 import random
+from src import weapon
 import pygame
 class Ship(pygame.sprite.Sprite):
 	def __init__(self):
@@ -26,3 +27,5 @@ class Ship(pygame.sprite.Sprite):
 			self.rect.right = 500
 		if self.rect.left < 0:
 			self.rect.left = 0 
+	def shoot(self):
+		return weapon.Weapon(self.rect.centerx,self.rect.top)

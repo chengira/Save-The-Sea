@@ -17,23 +17,17 @@ class Ship(pygame.sprite.Sprite):
 		self.rect = self.image.get_rect()
 		self.rect.centerx = 250
 		self.rect.bottom = 590
-		self.speedx = 8
+		self.speedx = 10
 	
-
-
-	def update(self):
-		key_pressed = pygame.key.get_pressed()
-		if key_pressed[pygame.K_RIGHT]:
-			self.rect.x += 2
-		if key_pressed[pygame.K_LEFT]:
-			self.rect.x -= 2
-		
-
-
-
+	def move_right(self): 
+		self.rect.x += self.speedx
 		if self.rect.right > 500:
 			self.rect.right = 500
+
+	def move_left(self): 
+		self.rect.x -= self.speedx
 		if self.rect.left < 0:
 			self.rect.left = 0 
+
 	def shoot(self):
 		return weapon.Weapon(self.rect.centerx,self.rect.top,"assets/weapon .png")

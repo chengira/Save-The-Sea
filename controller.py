@@ -1,6 +1,7 @@
 import pygame
 from src import ship
 from src import monster 
+from src import weapon
 
 class Controller:
 
@@ -29,7 +30,7 @@ class Controller:
 		self.bullets = pygame.sprite.Group()
 		self.player = pygame.sprite.Group()  # create a new sprite group for ship for collsion 
 		self.player.add(self.ship) # add in to group because we have to use a new group to create collsion in pygame.
-		for i in range(0):
+		for i in range(5):
 			self.monster = monster.Monster("assets/Seamonster_4.png")
 			self.all_sprite.add(self.monster)
 
@@ -55,8 +56,9 @@ class Controller:
 
 				elif event.type == pygame.KEYDOWN:
 					if event.key == pygame.K_SPACE:
-						self.all_sprite.add(self.ship.shoot())
-						self.bullets.add(self.ship.shoot())
+						self.weapon = weapon.Weapon(self.ship.shipx(),self.ship.shipy(),"assets/weapon .png")
+						self.all_sprite.add(self.weapon)
+						self.bullets.add(self.weapon)
 					elif (event.key == pygame.K_RIGHT):
 						self.ship.move_right()
 					elif (event.key == pygame.K_LEFT):

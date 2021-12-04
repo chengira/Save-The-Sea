@@ -29,5 +29,8 @@ class Ship(pygame.sprite.Sprite):
 		if self.rect.left < 0:
 			self.rect.left = 0 
 
-	def shoot(self):
-		return weapon.Weapon(self.rect.centerx,self.rect.top,"assets/weapon .png")
+	def shipx(self): 
+		return self.rect.centerx 
+
+	def shipy(self): 
+		return self.rect.top

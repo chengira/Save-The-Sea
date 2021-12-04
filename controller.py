@@ -21,16 +21,16 @@ class Controller:
 		self.black = (0,0,0)
 		self.clock = pygame.time.Clock()
 		self.running = True
-		self.display = pygame.display.set_caption("Space War")
+		self.display = pygame.display.set_caption("Save the Sea")
 		self.all_sprite = pygame.sprite.Group()
-		self.ship = ship.Ship()
+		self.ship = ship.Ship("assets/airplane_1.0.png")
 		self.all_sprite.add(self.ship)
 		self.rocks = pygame.sprite.Group()
 		self.bullets = pygame.sprite.Group()
 		self.player = pygame.sprite.Group()  # create a new sprite group for ship for collsion 
 		self.player.add(self.ship) # add in to group because we have to use a new group to create collsion in pygame.
 		for i in range(5):
-			self.monster = monster.Monster()
+			self.monster = monster.Monster("assets/Seamonster_4.png")
 			self.all_sprite.add(self.monster)
 
 			self.rocks.add(self.monster)
@@ -59,20 +59,22 @@ class Controller:
 						self.bullets.add(self.ship.shoot())
 			
 			self.all_sprite.update()
-			hits = pygame.sprite.groupcollide(self.rocks,self.bullets,True,True)	
-			for hit in hits:
-				print("collsion happend")
-				r = monster.Monster()
-				self.all_sprite.add(r)
-				self.rocks.add(r)
-				
+
+			hits = pygame.sprite.groupcollide(self.bullets,self.rocks, True, True)
+	
+			if(hits):
+				for hit in hits:
+					
+					print("collsion happened")
+					r = monster.Monster("assets/Seamonster_4.png")
+					self.all_sprite.add(r)
+					self.rocks.add(r)
 			
-			
-			hits = pygame.sprite.groupcollide(self.player,self.rocks,False,False)
-			if hits:
+			phits = pygame.sprite.groupcollide(self.player,self.rocks,False,False)
+			if phits:
 				self.running = False 
 
-			self.screen.fill(self.white)
+			#self.screen.fill(self.white)
 			self.all_sprite.draw(self.screen)
 
 			#screen update

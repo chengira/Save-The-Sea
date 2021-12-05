@@ -101,7 +101,8 @@ class Controller:
 			
 			phits = pygame.sprite.groupcollide(self.player,self.rocks,False,False)
 			if phits:
-				self.running = False 
+				self.show_init = False
+				self.draw_gameover()
 
 			#self.screen.fill(self.white)
 			self.all_sprite.draw(self.screen)

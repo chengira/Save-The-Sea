@@ -32,6 +32,8 @@ class Controller:
 		self.bullets = pygame.sprite.Group()
 		self.player = pygame.sprite.Group()  # create a new sprite group for ship for collsion 
 		self.player.add(self.ship) # add in to group because we have to use a new group to create collsion in pygame.
+		self.score = 0
+		self.font_name = pygame.font.match_font('arial')
 
 		for i in range(5):
 			self.monster = monster.Monster("assets/trash (2).png")
@@ -40,7 +42,7 @@ class Controller:
 			self.rocks.add(self.monster)
 		#load image
 		self.background_image = pygame.image.load("assets/ocean.png").convert()		
-
+		self.show_init = True
 
 	def mainLoop(self):
 
@@ -52,7 +54,12 @@ class Controller:
 
 		pygame.init()
 		while self.running:
+			if self.show_init: 
+				self.draw_init()
+				self.show_init = False
+
 			self.clock.tick(self.fps)
+
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					self.running = False 
@@ -86,7 +93,8 @@ class Controller:
 	
 			if(hits):
 				for hit in hits:					
-					print("collsion happened")
+					self.score += 10
+					print(self.score)
 					r = monster.Monster("assets/trash.png")
 					self.all_sprite.add(r)
 					self.rocks.add(r)
@@ -104,3 +112,48 @@ class Controller:
 			pygame.display.update()	
 
 		pygame.quit()		
+
+
+	def draw_text(self, surf, text, size, x , y): 
+		font = pygame.font.Font(self.font_name, size)
+		text_surface = font.render(text,True,self.white)
+		text_rect = text_surface.get_rect()
+		text_rect.centerx = x
+		text_rect.top = y
+		surf.blit(text_surface,text_rect)
+
+	def draw_init(self):
+		pygame.init()
+		self.screen.blit(self.background_image, (0, 0))
+		self.draw_text(self.screen,'Save the Sea',64,250,150)
+
+		self.draw_text(self.screen,'\u2190 \u2192: Control movement of ship. Use space to shoot the bullet',15,250,250)
+		
+		self.draw_text(self.screen,'Press any key to start the game ! ',15,250,350)
+		pygame.display.update()
+		waiting = True
+		while waiting:
+			self.clock.tick(self.fps)
+			for event in pygame.event.get():
+				if event.type == pygame.QUIT:
+					pygame.quit()
+
+				elif event.type == pygame.KEYUP:
+					waiting = False
+
+	def draw_gameover(self):
+		pygame.init()
+		self.screen.blit(self.background_image, (0, 0))
+		self.draw_text(self.screen,'Game Over !',64,250,150)
+		pygame.display.update()
+		waiting = True
+		while waiting:
+			self.clock.tick(self.fps)
+			for event in pygame.event.get():
+				if event.type == pygame.QUIT:
+					pygame.quit()
+
+
+
+
+

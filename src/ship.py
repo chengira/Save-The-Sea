@@ -17,7 +17,7 @@ class Ship(pygame.sprite.Sprite):
 		self.rect = self.image.get_rect()
 		self.rect.centerx = 250
 		self.rect.bottom = 590
-		self.speedx = 10
+		self.speedx = 20
 	
 	def move_right(self): 
 		self.rect.x += self.speedx

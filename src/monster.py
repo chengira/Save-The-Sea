@@ -9,7 +9,7 @@ class Monster(pygame.sprite.Sprite):
 
 		monster_image = pygame.image.load(img_file).convert()
 
-		self.image = pygame.transform.scale(monster_image, (56, 100))
+		self.image = pygame.transform.scale(monster_image, (53, 60))
 
 		self.image.set_colorkey((255,255,255))
 

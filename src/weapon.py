@@ -8,7 +8,7 @@ class Weapon(pygame.sprite.Sprite):
 		#self.image.fill((255,255,0))
 		bullet_image = pygame.image.load(img_file).convert()
 
-		self.image = pygame.transform.scale(bullet_image, (50, 60))
+		self.image = pygame.transform.scale(bullet_image, (9, 30))
 		self.image.set_colorkey((255, 255, 255))
 
 		self.rect = self.image.get_rect()

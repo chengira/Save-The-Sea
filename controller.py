@@ -35,7 +35,7 @@ class Controller:
 		self.score = 0
 		self.font_name = pygame.font.match_font('arial')
 
-		for i in range(5):
+		for i in range(12):
 			self.monster = monster.Monster("assets/trash (2).png")
 			self.all_sprite.add(self.monster)
 
@@ -67,16 +67,8 @@ class Controller:
 				elif event.type == pygame.KEYDOWN:
 					
 					keys = pygame.key.get_pressed() 			
-
-					if event.key == pygame.K_SPACE:
-						self.weapon = weapon.Weapon(self.ship.shipx(),self.ship.shipy(),"assets/laser.png")
-						self.all_sprite.add(self.weapon)
-						self.bullets.add(self.weapon)
-					elif (event.key == pygame.K_RIGHT):
-						self.ship.move_right()
-					elif (event.key == pygame.K_LEFT):
-						self.ship.move_left()
-					elif keys[pygame.K_RIGHT] and keys[pygame.K_SPACE]:
+					
+					if keys[pygame.K_RIGHT] and keys[pygame.K_SPACE]:
 						self.ship.move_right()
 						self.weapon = weapon.Weapon(self.ship.shipx(),self.ship.shipy(),"assets/laser.png")
 						self.all_sprite.add(self.weapon)
@@ -86,7 +78,15 @@ class Controller:
 						self.weapon = weapon.Weapon(self.ship.shipx(),self.ship.shipy(),"assets/laser.png")
 						self.all_sprite.add(self.weapon)
 						self.bullets.add(self.weapon)
-			
+					elif event.key == pygame.K_SPACE:
+						self.weapon = weapon.Weapon(self.ship.shipx(),self.ship.shipy(),"assets/laser.png")
+						self.all_sprite.add(self.weapon)
+						self.bullets.add(self.weapon)
+					elif (event.key == pygame.K_RIGHT):
+						self.ship.move_right()
+					elif (event.key == pygame.K_LEFT):
+						self.ship.move_left()
+					
 			self.all_sprite.update()
 
 			hits = pygame.sprite.groupcollide(self.bullets,self.rocks, True, True)
@@ -110,12 +110,14 @@ class Controller:
 			#screen update
 			self.screen.blit(self.background_image, (0, 0))
 			self.all_sprite.draw(self.screen)
+			self.draw_text(self.screen, str(self.score), 18, 250, 10)
 			pygame.display.update()	
 
 		pygame.quit()		
 
 
 	def draw_text(self, surf, text, size, x , y): 
+	
 		font = pygame.font.Font(self.font_name, size)
 		text_surface = font.render(text,True,self.white)
 		text_rect = text_surface.get_rect()

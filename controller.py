@@ -2,7 +2,7 @@ import pygame
 from src import ship
 from src import monster 
 from src import weapon
-from pygame import mixer
+import json
 
 class Controller:
 
@@ -20,20 +20,19 @@ class Controller:
 		self.screen =pygame.display.set_mode((self.width,self.height))
 		self.fps = 60
 		self.white = (255,255,255)
+		self.red = (255,0,0)
 		self.black = (0,0,0)
+		self.light_purple= (204,205,255)
 		self.clock = pygame.time.Clock()
 		self.running = True
 		pygame.key.set_repeat(1, 50) #held keys will count as many key strikes
 
 		self.display = pygame.display.set_caption("Save the Sea")
+
 		self.font_name = pygame.font.match_font('arial')
 
+	
 		self.background_image = pygame.image.load("assets/ocean.png").convert()		
-
-		self.game_song = mixer.music.load("assets/Game_song.wav")
-		self.start_song = mixer.music.load("assets/Start_song.wav")
-		self.end_song = mixer.music.load("assets/End_song.wav")
-
 		self.show_init = True
 
 	def mainLoop(self):
@@ -56,16 +55,14 @@ class Controller:
 				self.bullets = pygame.sprite.Group()
 				self.player = pygame.sprite.Group()  # create a new sprite group for ship for collsion 
 				self.player.add(self.ship) # add in to group because we have to use a new group to create collsion in pygame.
-				self.score = 0	
+				self.score = 0
+				self.health = self.ship.ship_health()	
 				for i in range(12):
 					self.monster = monster.Monster("assets/trash (2).png")
 					self.all_sprite.add(self.monster)
 
 					self.rocks.add(self.monster)
 			self.clock.tick(self.fps)
-
-			pygame.mixer.music.load("assets/Game_song.wav")
-			pygame.mixer.music.play(-1)
 
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
@@ -106,10 +103,12 @@ class Controller:
 					self.all_sprite.add(r)
 					self.rocks.add(r)
 			
-			phits = pygame.sprite.groupcollide(self.player,self.rocks,False,False)
-			if phits:
-				self.show_init = True
-				self.endgame()
+			phits = pygame.sprite.groupcollide(self.player,self.rocks,False,True)
+			for phit in phits:
+				self.health -= 30
+				if self.health < 0:
+					self.show_init = True
+					self.endgame()
 				
 
 			#self.screen.fill(self.white)
@@ -119,6 +118,7 @@ class Controller:
 			self.screen.blit(self.background_image, (0, 0))
 			self.all_sprite.draw(self.screen)
 			self.draw_text(self.screen, str(self.score), 18, 250, 10)
+			self.draw_health(self.screen,self.health,10,10)
 			pygame.display.update()	
 
 		pygame.quit()		
@@ -145,8 +145,6 @@ class Controller:
 		waiting = True
 		while waiting:
 			self.clock.tick(self.fps)
-			pygame.mixer.music.load("assets/Start_song.wav")
-			pygame.mixer.music.play()			
 
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
@@ -157,18 +155,37 @@ class Controller:
 	
 	def endgame(self):
 		pygame.init()
+
+		#fptr = open("etc/Scores.json", "r")
+
+		#prev_scores = json.load(fptr)
+		
+		#print(prev_scores)
+		#print(prev_scores["Highest Score"])
+
+
+		#if prev_scores[0]["Highest Score"] < self.score: 
+		#	fptr.close()
+		#	fptr2 = open("etc/Scores.json", "w")
+		#	
+		#	prev_scores = self.score 
+		#	fptr2.close()
+
+		#else:
+		#	fptr.close()
+		#	fptr2 = open("etc/Scores.json", "w")
+		#	prev_scores[] = self.score
+		#	fptr2.close()
+
 		self.screen.blit(self.background_image, (0, 0))
 		self.draw_text(self.screen,'Game Over! ',75,250,150)
 		self.draw_text(self.screen,'Your Score is: '+ f'{self.score}' ,50,250,250)
-
 		
 		self.draw_text(self.screen,'Press any key to restart the game ! ',15,250,350)
 		pygame.display.update()
 		waiting = True
 		while waiting:
 			self.clock.tick(self.fps)
-			pygame.mixer.music.load("assets/End_song.wav")
-			pygame.mixer.music.play()
 
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
@@ -176,4 +193,14 @@ class Controller:
 
 				elif event.type == pygame.KEYUP:
 					waiting = False 
-
+					
+	def draw_health(self,surf,hp,x,y):
+		if hp < 0:
+			hp = 0
+		bar_length = 100
+		bar_height = 10
+		fill = (hp/100)*bar_length
+		outline_rect = pygame.Rect(x,y,bar_length,bar_height)
+		fill_rect = pygame.Rect(x,y,fill,bar_height)
+		pygame.draw.rect(surf,self.red,fill_rect)
+		pygame.draw.rect(surf,self.light_purple,outline_rect,2)

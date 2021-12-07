@@ -18,6 +18,7 @@ class Ship(pygame.sprite.Sprite):
 		self.rect.centerx = 250
 		self.rect.bottom = 590
 		self.speedx = 20
+		self.health = 100
 	
 	def move_right(self): 
 		self.rect.x += self.speedx
@@ -34,3 +35,7 @@ class Ship(pygame.sprite.Sprite):
 
 	def shipy(self): 
 		return self.rect.top
+
+	def ship_health(self): 
+		return self.health
+

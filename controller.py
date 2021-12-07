@@ -2,6 +2,7 @@ import pygame
 from src import ship
 from src import monster 
 from src import weapon
+from pygame import mixer
 
 class Controller:
 
@@ -25,29 +26,20 @@ class Controller:
 		pygame.key.set_repeat(1, 50) #held keys will count as many key strikes
 
 		self.display = pygame.display.set_caption("Save the Sea")
-		self.all_sprite = pygame.sprite.Group()
-		self.ship = ship.Ship("assets/jet (3).png")
-		self.all_sprite.add(self.ship)
-		self.rocks = pygame.sprite.Group()
-		self.bullets = pygame.sprite.Group()
-		self.player = pygame.sprite.Group()  # create a new sprite group for ship for collsion 
-		self.player.add(self.ship) # add in to group because we have to use a new group to create collsion in pygame.
-		self.score = 0
 		self.font_name = pygame.font.match_font('arial')
 
-		for i in range(12):
-			self.monster = monster.Monster("assets/trash (2).png")
-			self.all_sprite.add(self.monster)
-
-			self.rocks.add(self.monster)
-		#load image
 		self.background_image = pygame.image.load("assets/ocean.png").convert()		
+
+		self.game_song = mixer.music.load("assets/Game_song.wav")
+		self.start_song = mixer.music.load("assets/Start_song.wav")
+		self.end_song = mixer.music.load("assets/End_song.wav")
+
 		self.show_init = True
 
 	def mainLoop(self):
 
 		"""																																																			
-		This method checks to see whether or not the gameplay is continuing or if the gameplay is over. It accomplishes such by checking if the state of the game is either “running.” If the game is in a “running” state the gameplay of the program is run. 
+		This method checks to see whether or not the gameplay is continuing or if the gameplay is over. It accomplishes such by checking if the state of the game is either \u201crunning.\u201d If the game is in a \u201crunning\u201d state the gameplay of the program is run. 
 		args: self which is the object that is created from the class. 
 		return: none
 		"""
@@ -57,8 +49,23 @@ class Controller:
 			if self.show_init: 
 				self.draw_init()
 				self.show_init = False
+				self.all_sprite = pygame.sprite.Group()
+				self.ship = ship.Ship("assets/jet (3).png")
+				self.all_sprite.add(self.ship)
+				self.rocks = pygame.sprite.Group()
+				self.bullets = pygame.sprite.Group()
+				self.player = pygame.sprite.Group()  # create a new sprite group for ship for collsion 
+				self.player.add(self.ship) # add in to group because we have to use a new group to create collsion in pygame.
+				self.score = 0	
+				for i in range(12):
+					self.monster = monster.Monster("assets/trash (2).png")
+					self.all_sprite.add(self.monster)
 
+					self.rocks.add(self.monster)
 			self.clock.tick(self.fps)
+
+			pygame.mixer.music.load("assets/Game_song.wav")
+			pygame.mixer.music.play(-1)
 
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
@@ -101,8 +108,9 @@ class Controller:
 			
 			phits = pygame.sprite.groupcollide(self.player,self.rocks,False,False)
 			if phits:
-				self.show_init = False
-				self.draw_gameover()
+				self.show_init = True
+				self.endgame()
+				
 
 			#self.screen.fill(self.white)
 			self.all_sprite.draw(self.screen)
@@ -137,26 +145,35 @@ class Controller:
 		waiting = True
 		while waiting:
 			self.clock.tick(self.fps)
+			pygame.mixer.music.load("assets/Start_song.wav")
+			pygame.mixer.music.play()			
+
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					pygame.quit()
 
 				elif event.type == pygame.KEYUP:
-					waiting = False
-
-	def draw_gameover(self):
+					waiting = False 
+	
+	def endgame(self):
 		pygame.init()
 		self.screen.blit(self.background_image, (0, 0))
-		self.draw_text(self.screen,'Game Over !',64,250,150)
+		self.draw_text(self.screen,'Game Over! ',75,250,150)
+		self.draw_text(self.screen,'Your Score is: '+ f'{self.score}' ,50,250,250)
+
+		
+		self.draw_text(self.screen,'Press any key to restart the game ! ',15,250,350)
 		pygame.display.update()
 		waiting = True
 		while waiting:
 			self.clock.tick(self.fps)
+			pygame.mixer.music.load("assets/End_song.wav")
+			pygame.mixer.music.play()
+
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					pygame.quit()
 
-
-
-
+				elif event.type == pygame.KEYUP:
+					waiting = False 
 

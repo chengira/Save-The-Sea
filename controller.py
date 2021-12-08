@@ -141,6 +141,8 @@ class Controller:
 		self.draw_text(self.screen,'\u2190 \u2192: Control movement of ship. Use space to shoot the bullet',15,250,250)
 		
 		self.draw_text(self.screen,'Press any key to start the game ! ',15,250,350)
+		self.draw_text(self.screen,'Press ARROW DOWN to exit the game ',15,250,375)
+
 		pygame.display.update()
 		waiting = True
 		while waiting:
@@ -149,38 +151,49 @@ class Controller:
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					pygame.quit()
-
+				elif event.type == pygame.KEYDOWN:
+					if event.key == pygame.K_DOWN:
+						pygame.quit()
 				elif event.type == pygame.KEYUP:
 					waiting = False 
 	
 	def endgame(self):
 		pygame.init()
 
-		#fptr = open("etc/Scores.json", "r")
+		fptr = open("etc/Scores.json", "r")
 
-		#prev_scores = json.load(fptr)
-		
-		#print(prev_scores)
-		#print(prev_scores["Highest Score"])
+		prev_scores = json.load(fptr)
+		self.high_score = 0
 
+		if prev_scores["Highest Score"] < self.score: 
+			fptr.close()
+			fptr2 = open("etc/Scores.json", "w")
 
-		#if prev_scores[0]["Highest Score"] < self.score: 
-		#	fptr.close()
-		#	fptr2 = open("etc/Scores.json", "w")
-		#	
-		#	prev_scores = self.score 
-		#	fptr2.close()
+			scores_dict = {}
+			key = "Highest Score"
+			
+			scores_dict[key] = self.score
+			self.high_score = self.score
 
-		#else:
-		#	fptr.close()
-		#	fptr2 = open("etc/Scores.json", "w")
-		#	prev_scores[] = self.score
-		#	fptr2.close()
+			json.dump(scores_dict, fptr2)
+			fptr2.close()
+		else: 
+			self.high_score = prev_scores["Highest Score"]			
+			fptr.close()
 
 		self.screen.blit(self.background_image, (0, 0))
 		self.draw_text(self.screen,'Game Over! ',75,250,150)
-		self.draw_text(self.screen,'Your Score is: '+ f'{self.score}' ,50,250,250)
+
+
+		if self.high_score == self.score: 
+			self.draw_text(self.screen,'Your Score is: '+ f'{self.score}' ,50,250,250)
+			self.draw_text(self.screen, 'NICE! New High Score: ' + f'{self.high_score}', 25, 250, 312)
+
+		else:
+			self.draw_text(self.screen,'Your Score is: '+ f'{self.score}' ,50,250,250)
+			self.draw_text(self.screen, 'Your High Score: ' + f'{self.high_score}', 25, 250, 312)
 		
+		self.draw_text(self.screen,'Press ARROW DOWN to EXIT the game',15,250,375)
 		self.draw_text(self.screen,'Press any key to restart the game ! ',15,250,350)
 		pygame.display.update()
 		waiting = True
@@ -191,8 +204,13 @@ class Controller:
 				if event.type == pygame.QUIT:
 					pygame.quit()
 
+				elif event.type == pygame.KEYDOWN:
+					if event.key == pygame.K_DOWN:
+						pygame.quit()
 				elif event.type == pygame.KEYUP:
 					waiting = False 
+
+					
 					
 	def draw_health(self,surf,hp,x,y):
 		if hp < 0:

@@ -4,8 +4,6 @@ class Weapon(pygame.sprite.Sprite):
 
 	def __init__(self,x,y,img_file):
 		pygame.sprite.Sprite.__init__(self)
-		#self.image = pygame.Surface((10,20))
-		#self.image.fill((255,255,0))
 		bullet_image = pygame.image.load(img_file).convert()
 
 		self.image = pygame.transform.scale(bullet_image, (9, 30))
@@ -23,6 +21,11 @@ class Weapon(pygame.sprite.Sprite):
         
 
 	def update(self):
+		"""
+		This function create bullet moving speed, and once bullet go over the screen, it will dispear. 
+		arg:None
+		return: None
+		"""
 
 		self.rect.y += self.speedy
 		if self.rect.bottom < 0:

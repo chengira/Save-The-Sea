@@ -4,7 +4,7 @@ import pygame
 import controller
 def main():
 	pygame.init()
-	team = {"lead": "Ira Cheng", "backend": "Chao Lin", "frontend": "Carl Huang"}
+	team = {"lead": "Ira Cheng", "backend": "Carl Huang", "frontend": "Chao Lin"}
 	print("Software Lead is:", team["lead"])
 	print("Backend is:", team["backend"])
 	print("Frontend is:" , team["frontend"])

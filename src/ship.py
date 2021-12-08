@@ -17,25 +17,50 @@ class Ship(pygame.sprite.Sprite):
 		self.rect = self.image.get_rect()
 		self.rect.centerx = 250
 		self.rect.bottom = 590
-		self.speedx = 20
+		self.speedx = 10
 		self.health = 100
 	
 	def move_right(self): 
+		"""
+		This funciton create ship's horizontal moving speed, and prevent ship go over the screen. 
+		arg: None
+		return: None
+		"""
 		self.rect.x += self.speedx
 		if self.rect.right > 500:
 			self.rect.right = 500
 
 	def move_left(self): 
+		"""
+		This function create ship's vertical moving speed, and prevent ship go over the screen.
+		arg: None
+		return: None
+		"""
 		self.rect.x -= self.speedx
 		if self.rect.left < 0:
 			self.rect.left = 0 
 
 	def shipx(self): 
+		"""
+		This function stored ship's x-axis position
+		arg: None
+		return: self.rect.centerx (int)
+		"""
 		return self.rect.centerx 
 
 	def shipy(self): 
+		"""
+		This function stored ship's y-axis position
+		arg: None
+		return: self.rect.top (int)
+		"""
 		return self.rect.top
 
 	def ship_health(self): 
+		"""		
+		This function stored ship's heath 
+		arg: None
+		return: self.health(int)
+		"""
 		return self.health
 

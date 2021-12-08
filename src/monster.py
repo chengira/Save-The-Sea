@@ -3,8 +3,6 @@ import pygame
 class Monster(pygame.sprite.Sprite):
 	def __init__(self,img_file):
 		pygame.sprite.Sprite.__init__(self)
-		#self.image = pygame.Surface((30,40))
-		#self.image.fill((255,0,0))
 
 
 		monster_image = pygame.image.load(img_file).convert()
@@ -25,6 +23,11 @@ class Monster(pygame.sprite.Sprite):
 		self.rot_degree = random.randrange(-3,3)
 
 	def rotate(self): 
+		"""
+		This funciton make monsters roatate while they are moving.
+		arg: None
+		return: None
+		"""
 		self.total_degree += self.rot_degree
 		self.total_degree = self.total_degree % 360
 		self.image = pygame.transform.rotate(self.image_ori, self.total_degree)
@@ -34,6 +37,11 @@ class Monster(pygame.sprite.Sprite):
 	
 
 	def update(self):
+		"""
+		This funciton sets monster's moving speed
+		arg: None
+		return: None
+		"""
 		self.rotate()
 		self.rect.y += self.speedy
 		self.rect.x += self.speedx

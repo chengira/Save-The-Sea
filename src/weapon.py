@@ -1,5 +1,6 @@
 import random 
 import pygame 
+
 class Weapon(pygame.sprite.Sprite):
 
 	def __init__(self,x,y,img_file):
@@ -14,17 +15,13 @@ class Weapon(pygame.sprite.Sprite):
 		self.rect.bottom = y
 		self.speedy= -10
 
-		
-
-
-
         
 
 	def update(self):
-		"""
-		This function create bullet moving speed, and once bullet go over the screen, it will dispear. 
-		arg:None
-		return: None
+		""" 
+		This function sets the bullet's moving speed, and once it goes over the screen, it will dispear. 
+		args: none
+		return: none
 		"""
 
 		self.rect.y += self.speedy

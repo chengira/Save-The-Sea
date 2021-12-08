@@ -1,5 +1,6 @@
 import random
 import pygame
+
 class Monster(pygame.sprite.Sprite):
 	def __init__(self,img_file):
 		pygame.sprite.Sprite.__init__(self)
@@ -24,9 +25,9 @@ class Monster(pygame.sprite.Sprite):
 
 	def rotate(self): 
 		"""
-		This funciton make monsters roatate while they are moving.
-		arg: None
-		return: None
+		This function makes the garbage cans rotate while they are moving.
+		args: none
+		return: none
 		"""
 		self.total_degree += self.rot_degree
 		self.total_degree = self.total_degree % 360
@@ -38,9 +39,9 @@ class Monster(pygame.sprite.Sprite):
 
 	def update(self):
 		"""
-		This funciton sets monster's moving speed
-		arg: None
-		return: None
+		This function sets the garbage cans' moving speed.
+		args: none
+		return: none
 		"""
 		self.rotate()
 		self.rect.y += self.speedy

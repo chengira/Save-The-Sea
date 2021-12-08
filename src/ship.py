@@ -1,6 +1,7 @@
 import random
 from src import weapon
 import pygame
+
 class Ship(pygame.sprite.Sprite):
 	def __init__(self,img_file):
 		pygame.sprite.Sprite.__init__(self)
@@ -22,9 +23,9 @@ class Ship(pygame.sprite.Sprite):
 	
 	def move_right(self): 
 		"""
-		This funciton create ship's horizontal moving speed, and prevent ship go over the screen. 
-		arg: None
-		return: None
+		This function sets the jet's horizontal moving speed, and prevents it from going off the right screen. 
+		args: none
+		return: none
 		"""
 		self.rect.x += self.speedx
 		if self.rect.right > 500:
@@ -32,9 +33,9 @@ class Ship(pygame.sprite.Sprite):
 
 	def move_left(self): 
 		"""
-		This function create ship's vertical moving speed, and prevent ship go over the screen.
-		arg: None
-		return: None
+		This function sets the jet's horizontal moving speed, and prevents it from going off the left screen.
+		args: none
+		return: none
 		"""
 		self.rect.x -= self.speedx
 		if self.rect.left < 0:
@@ -42,24 +43,24 @@ class Ship(pygame.sprite.Sprite):
 
 	def shipx(self): 
 		"""
-		This function stored ship's x-axis position
-		arg: None
+		This function stores jet's x-axis position
+		args: none
 		return: self.rect.centerx (int)
 		"""
 		return self.rect.centerx 
 
 	def shipy(self): 
 		"""
-		This function stored ship's y-axis position
-		arg: None
+		This function stores jet's y-axis position
+		args: none
 		return: self.rect.top (int)
 		"""
 		return self.rect.top
 
 	def ship_health(self): 
 		"""		
-		This function stored ship's heath 
-		arg: None
+		This function stores the jet's health 
+		args: none
 		return: self.health(int)
 		"""
 		return self.health

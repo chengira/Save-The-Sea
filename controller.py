@@ -25,7 +25,7 @@ class Controller:
 		self.light_purple= (204,205,255)
 		self.clock = pygame.time.Clock()
 		self.running = True
-		pygame.key.set_repeat(1, 50) #held keys will count as many key strikes
+		pygame.key.set_repeat(1, 90) #held keys will count as many key strikes
 
 		self.display = pygame.display.set_caption("Save the Sea")
 
@@ -57,6 +57,10 @@ class Controller:
 				self.player.add(self.ship) # add in to group because we have to use a new group to create collsion in pygame.
 				self.score = 0
 				self.health = self.ship.ship_health()	
+				
+				pygame.mixer.music.load("assets/Game_song.wav")
+				pygame.mixer.music.play(-1)
+
 				for i in range(12):
 					self.monster = monster.Monster("assets/trash (2).png")
 					self.all_sprite.add(self.monster)
@@ -143,6 +147,9 @@ class Controller:
 		self.draw_text(self.screen,'Press any key to start the game ! ',15,250,350)
 		self.draw_text(self.screen,'Press ARROW DOWN to exit the game ',15,250,375)
 
+		pygame.mixer.music.load("assets/Start_song.wav")
+		pygame.mixer.music.play(-1)
+
 		pygame.display.update()
 		waiting = True
 		while waiting:
@@ -159,6 +166,9 @@ class Controller:
 	
 	def endgame(self):
 		pygame.init()
+
+		pygame.mixer.music.load("assets/End_song.wav")
+		pygame.mixer.music.play(-1)
 
 		fptr = open("etc/Scores.json", "r")
 

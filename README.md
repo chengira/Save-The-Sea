@@ -7,7 +7,7 @@
 
 https://github.com/bucs110a0fall21/final-project-the-boy-friends
 
-<< [link to demo presentation slides](#) >>
+https://docs.google.com/presentation/d/1w89XJLad0k7Sqwk-PFB00Nfa9FxOV5qkuDuHhlcdJ_g/edit?usp=sharing
 
 ### Team:  The Boyfriends 
 ####  Chao Lin, Carl Huang, Ira Cheng
@@ -64,6 +64,7 @@ The Project is broken down into the following file structure:
 * assets
     * laser.png
     * class_diagram.jpg
+    * trash.png
     * trash(2).png
     * jet(3).png
     * ocean.png
@@ -74,6 +75,9 @@ The Project is broken down into the following file structure:
     * game
     * game_over
     * start_screen
+    * staring_screen.png
+    * gaming_screen.png
+    * ending_screen.png
 * etc
     * Scores.json
 

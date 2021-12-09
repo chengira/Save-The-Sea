@@ -15,27 +15,31 @@ https://github.com/bucs110a0fall21/final-project-the-boy-friends
 ***
 
 ## Project Description *(Software Lead)*
-<< This is a project that emulates a space invader game with asteroids, but with a twist as the concept is based on destroying garbage cans that are falling into Earth's oceans. The player plays as a fighter jet that they can control using keyboard inputs. The objective is to evade the garbage cans while using the fighter jet to destroy any that get in the way. The player should try to score as many points as possible without draining their health bar. As the gameplay progresses, the odds of the player's survivability decreases. >>
+This is a project that emulates a space invader game with asteroids, but with a twist as the concept is based on destroying garbage cans that are falling into Earth's oceans. The player plays as a fighter jet that they can control using keyboard inputs. The objective is to evade the garbage cans while using the fighter jet to destroy any that get in the way. The player should try to score as many points as possible without draining their health bar. As the gameplay progresses, the odds of the player's survivability decreases.
 
 ***    
 
 ## User Interface Design *(Front End Specialist)*
 * ![game](assets/game)
+This screen is where the actual game is being played. The ship is surrounded by asteroids which it has to destroy by pressing the space bar to shoot them. It gives the player the options to move left or right and to shoot a bullet. 
   ![start_screen](assets/start_screen)
+This screen is the first screen that is presented to the player when they launch the game. It gives the options of playing the game or exiting the game.
   ![game_over](assets/game_over) 
+This screen is what the player is presented with when they lose all health points and lose the game. It gives the player the options of playing again or exiting the game entirely.
+
     * For example, if your program has a start screen, game screen, and game over screen, you should include a wireframe / screenshot / drawing of each one and a short description of the components
 
 * ![Final_start](assets/staring_screen.png)
   ![Final_game](assets/gaming_screen.png)
   ![Final_end](assets/ending_screen.png)
 
-* << You should also have a screenshot of each screen for your final GUI >>
-
 ***        
 
 ## Program Design *(Backend Specialist)*
 * Non-Standard libraries
-    * << You should have a list of any additional libraries or modules used (pygame, request) beyond non-standard python. >>
+    * Pygame: set of Python modules that is used to primarily create video games
+      https://www.pygame.org/docs/
+
     * For each additional module you should include
         * url for the module documentation
         * a short description of the module
@@ -44,8 +48,10 @@ https://github.com/bucs110a0fall21/final-project-the-boy-friends
         * ![class diagram](assets/class_diagram.jpg)
     * This does not need to be overly detailed, but should show how your code fits into the Model/View/Controller paradigm.
 * Classes
-    * << You should have a list of each of your classes with a description. Weapon, Ship, Monster >>
-
+	Controller Class: Connect all classes in src file, and makes the game run.
+	Weapon Class: Sets up laser's speed, shape, and postion.
+	Ship Class: Sets up jet's speed, shape, and postion. 
+	Monster Class: Sets up garbage cans' speed, shape, and position.
 ## Project Structure *(Software Lead)*
 
 The Project is broken down into the following file structure:

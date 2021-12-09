@@ -1,7 +1,7 @@
 #import your controller
 
 import pygame
-import controller
+from src import controller 
 def main():
 	pygame.init()
 	team = {"lead": "Ira Cheng", "backend": "Carl Huang", "frontend": "Chao Lin"}

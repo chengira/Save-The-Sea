@@ -47,7 +47,7 @@ class Controller:
 				self.all_sprite = pygame.sprite.Group()
 				self.ship = ship.Ship("assets/jet (3).png")
 				self.all_sprite.add(self.ship)
-				self.rocks = pygame.sprite.Group()
+				self.trash = pygame.sprite.Group()
 				self.bullets = pygame.sprite.Group()
 				self.player = pygame.sprite.Group()  # create a new sprite group for ship for collsion 
 				self.player.add(self.ship) # add in to group because we have to use a new group to create collsion in pygame.
@@ -61,7 +61,7 @@ class Controller:
 					self.monster = monster.Monster("assets/trash (2).png")
 					self.all_sprite.add(self.monster)
 
-					self.rocks.add(self.monster)
+					self.trash.add(self.monster)
 			self.clock.tick(self.fps)
 
 			for event in pygame.event.get():
@@ -93,7 +93,7 @@ class Controller:
 					
 			self.all_sprite.update()
 
-			hits = pygame.sprite.groupcollide(self.bullets,self.rocks, True, True)
+			hits = pygame.sprite.groupcollide(self.bullets,self.trash, True, True)
 	
 			if(hits):
 				for hit in hits:					
@@ -102,15 +102,15 @@ class Controller:
 					
 					r = monster.Monster("assets/trash.png")
 					self.all_sprite.add(r)
-					self.rocks.add(r)
+					self.trash.add(r)
 					self.kill_counter += 1
 
 					if (self.kill_counter % 10) == 0:
 						s = monster.Monster("assets/trash.png")
 						self.all_sprite.add(s)
-						self.rocks.add(s)
+						self.trash.add(s)
 			
-			phits = pygame.sprite.groupcollide(self.player,self.rocks,False,True)
+			phits = pygame.sprite.groupcollide(self.player,self.trash,False,True)
 			for phit in phits:
 				self.health -= 30
 				if self.health < 0:

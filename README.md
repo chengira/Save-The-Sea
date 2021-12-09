@@ -25,9 +25,9 @@ https://github.com/bucs110a0fall21/final-project-the-boy-friends
   ![game_over](assets/game_over) 
     * For example, if your program has a start screen, game screen, and game over screen, you should include a wireframe / screenshot / drawing of each one and a short description of the components
 
-  ![Final_start_screen](assets/Staring Screen)
-  ![Final_game_scren](assets/Gaming Screen)
-  ![Final_end](assets/Ending_Screen)
+  ![Final_start_screen](assets/Staring Screen.png)
+  ![Final_game_scren](assets/Gaming Screen.png)
+  ![Final_end](assets/Ending_Screen.png)
 
 * << You should also have a screenshot of each screen for your final GUI >>
 

@@ -19,7 +19,7 @@ class Weapon(pygame.sprite.Sprite):
 
 	def update(self):
 		""" 
-		This function sets the bullet's moving speed, and once it goes over the screen, it will dispear. 
+		This function sets the bullet's moving speed, and once it goes over the screen, it will disapear. It will update the bullet's position. 
 		args: none
 		return: none
 		"""

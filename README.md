@@ -48,10 +48,10 @@ This screen is what the player is presented with when they lose all health point
         * ![class diagram](assets/class_diagram.jpg)
     * This does not need to be overly detailed, but should show how your code fits into the Model/View/Controller paradigm.
 * Classes
-	Controller Class: Connect all classes in src file, and makes the game run.
-	Weapon Class: Sets up laser's speed, shape, and postion.
-	Ship Class: Sets up jet's speed, shape, and postion. 
-	Monster Class: Sets up garbage cans' speed, shape, and position.
+	Controller Class: Connect all classes in src file, and makes the game run. It deals with all the events that occur in the program and responds to each event. 
+	Weapon Class: Sets up laser's speed, shape, and postion. It is spawned in the controller and takes its parameters from the ship's position. 
+	Ship Class: Sets up jet's speed, shape, and postion. It is the object that the player controlls through moving left and right and pressing the space bar to shoot lasers.
+	Monster Class: Sets up garbage cans' speed, shape, and position. It is the object that the player is fighting. They spawn consistantly at the top of the screen and move downwards. Making collisions with the bullets will yield the result of both sprites dying and making the collisions with the player will deal damage to the player.
 ## Project Structure *(Software Lead)*
 
 The Project is broken down into the following file structure:

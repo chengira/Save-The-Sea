@@ -25,7 +25,7 @@ class Monster(pygame.sprite.Sprite):
 
 	def rotate(self): 
 		"""
-		This function makes the garbage cans rotate while they are moving.
+		This function makes the garbage cans rotate while they are moving using modulo 360. 
 		args: none
 		return: none
 		"""
@@ -39,7 +39,7 @@ class Monster(pygame.sprite.Sprite):
 
 	def update(self):
 		"""
-		This function sets the garbage cans' moving speed.
+		This function sets the garbage cans' moving speed. It updates the trash can's current position and checks to see if it reaches the bottom of the screen. If so it will respawn.
 		args: none
 		return: none
 		"""

@@ -23,7 +23,7 @@ class Ship(pygame.sprite.Sprite):
 	
 	def move_right(self): 
 		"""
-		This function sets the jet's horizontal moving speed, and prevents it from going off the right screen. 
+		This function sets the jet's horizontal moving speed, and prevents it from going off the right screen. It will move the jet to the right by its speed value.  
 		args: none
 		return: none
 		"""
@@ -33,7 +33,7 @@ class Ship(pygame.sprite.Sprite):
 
 	def move_left(self): 
 		"""
-		This function sets the jet's horizontal moving speed, and prevents it from going off the left screen.
+		This function sets the jet's horizontal moving speed, and prevents it from going off the left screen. It will move the jet to the left by its speed value.
 		args: none
 		return: none
 		"""
@@ -45,7 +45,7 @@ class Ship(pygame.sprite.Sprite):
 		"""
 		This function stores jet's x-axis position
 		args: none
-		return: self.rect.centerx (int)
+		return: self.rect.centerx (int) which is the jet's current center x value.
 		"""
 		return self.rect.centerx 
 
@@ -53,7 +53,7 @@ class Ship(pygame.sprite.Sprite):
 		"""
 		This function stores jet's y-axis position
 		args: none
-		return: self.rect.top (int)
+		return: self.rect.top (int) which is the jet's current y value.
 		"""
 		return self.rect.top
 
@@ -61,7 +61,7 @@ class Ship(pygame.sprite.Sprite):
 		"""		
 		This function stores the jet's health 
 		args: none
-		return: self.health(int)
+		return: self.health(int) which is the jet's current health value.
 		"""
 		return self.health
 
